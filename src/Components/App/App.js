@@ -10,7 +10,8 @@ class App extends Component {
     super();
     this.state = {
       months: months, 
-      allBirthdays: []
+      allBirthdays: [], 
+      newBirthday: ''
     }
   }
 
@@ -26,12 +27,10 @@ class App extends Component {
   }
 
   populateMonths() {
-    const months = this.state.months.map((month) => {
+    return this.state.months.map((month) => {
       const birthdays = this.state.allBirthdays.filter(birthday => birthday.month === month.id);
-      console.log(birthdays)
       return <Month name={month.name} id={month.id} key={month.id} birthdays={birthdays}/>
     })
-    return months;
   }
 
   render() {
@@ -39,7 +38,7 @@ class App extends Component {
       <div className="App">
         <h1>Birthdays</h1>
         <div className='bday-form'>
-          <Form />
+          <Form handleChange={this.handleChange}/>
         </div>
         <div className='bday-container'>
           {this.populateMonths()}

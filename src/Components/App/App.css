@@ -35,6 +35,6 @@ h1 {
 .bday-form {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   border: 7px solid black;
 }
