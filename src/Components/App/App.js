@@ -15,15 +15,17 @@ class App extends Component {
     }
   }
 
-  handleChange() {
-
+  handleChange(name, month, day) {
+    this.setState({ newBirthday: {id: Date.now(), name: name, month: parseInt(month), day: parseInt(day)} })
+  //   fetch('POST', 'http://localhost:3001/api/v1/birthdays')
+  //   .then(response => response.json())
   }
 
   componentDidMount () {
       fetch('http://localhost:3001/api/v1/birthdays')
       .then(response => response.json())
       .then(data =>
-        this.setState({ allBirthdays: data.map(each => each) }))
+       this.setState({ allBirthdays: data.map(each => each) }))
   }
 
   populateMonths() {

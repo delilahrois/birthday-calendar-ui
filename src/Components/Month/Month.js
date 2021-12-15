@@ -13,6 +13,7 @@ const Month = ({name, birthdays}) => {
     return (
       <div className="month-card">
         <h2 className="month-header">{name}</h2>
+        {!birthdays.length && <p className="no-bdays">No birthdays this month.</p>}
         {findBirthdays}
       </div>
     )

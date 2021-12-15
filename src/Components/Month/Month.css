@@ -10,3 +10,9 @@
 .month-header {
   color: #D077E7;
 }
+
+.no-bdays {
+  font-style: italic;
+  font-size: smaller;
+  color: grey;
+}

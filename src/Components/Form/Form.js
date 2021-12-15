@@ -35,7 +35,7 @@ class Form extends Component {
         <label htmlFor="day-input">Day:</label>
         <input type="text" className="input" id="day-input" onChange={(e) => this.setDay(e)}></input>
 
-        <button>Add this birthday!</button>
+        <button onClick={(name, month, day) => this.props.handleChange(name, month, day)}>Add this birthday!</button>
       </form>
     )
   }
