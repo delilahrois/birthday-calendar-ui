@@ -15,17 +15,16 @@ class App extends Component {
     }
   }
 
-  handleChange(name, month, day) {
-    this.setState({ newBirthday: {id: Date.now(), name: name, month: parseInt(month), day: parseInt(day)} })
-  //   fetch('POST', 'http://localhost:3001/api/v1/birthdays')
-  //   .then(response => response.json())
-  }
+  // handleChange(newBday) {
+  //   this.setState({ newBirthday: newBday })
+  // }
 
   componentDidMount () {
       fetch('http://localhost:3001/api/v1/birthdays')
       .then(response => response.json())
       .then(data =>
        this.setState({ allBirthdays: data.map(each => each) }))
+      //  .then(this.state.newBirthday && this.setState({allBirthdays: [this.state.allBirthdays, this.state.newBirthday]}))
   }
 
   populateMonths() {
@@ -40,7 +39,7 @@ class App extends Component {
       <div className="App">
         <h1>Birthdays</h1>
         <div className='bday-form'>
-          <Form handleChange={this.handleChange}/>
+          <Form months={this.state.months} handleChange={this.handleChange}/>
         </div>
         <div className='bday-container'>
           {this.populateMonths()}

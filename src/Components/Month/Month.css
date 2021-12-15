@@ -16,3 +16,12 @@
   font-size: smaller;
   color: grey;
 }
+
+button {
+  background-color: #5DE1E6;
+  border: 0px;
+  padding: 10px;
+  border-radius: 15px;
+  color: white;
+  font-size: large;
+}
