@@ -1,20 +1,62 @@
+import React, { Component } from 'react';
 import './App.css';
 import Month from '../Month/Month';
+// import fetchBirthdays from './fetchCalls.js';
 import { months } from '../../months_data';
 
-function App() {
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      months: months, 
+      allBirthdays: []
+    }
+  }
 
-  return (
-    <div className="App">
-      <h1>Birthdays</h1>
-      <div className='bday-form'>
+  handleChange() {
 
+  }
+
+  componentDidMount () {
+      fetch('http://localhost:3001/api/v1/birthdays')
+      .then(response => response.json())
+      .then(data =>
+        this.setState({ allBirthdays: data.map(each => each) }))
+    }
+  
+
+  // componentDidMount() {
+  //   fetchBirthdays()
+  //     .then(data => this.setState({ months: data.map((month) => {
+  //       return month;
+  //     })}))
+      
+  // }
+
+
+  populateMonths() {
+    const months = this.state.months.map((month) => {
+      const birthdays = this.state.allBirthdays.filter(birthday => birthday.month === month.id);
+      console.log(birthdays)
+      return <Month name={month.name} id={month.id} key={month.id} birthdays={birthdays}/>
+    })
+    return months;
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Birthdays</h1>
+        <div className='bday-form'>
+
+        </div>
+        <div className='bday-container'>
+          {this.populateMonths()}
+        </div>
       </div>
-      <div className='bday-container'>
-        <Month />
-      </div>
-    </div>
-  );
+    );
+  }
 }
+
 
 export default App;
