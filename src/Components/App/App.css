@@ -31,3 +31,10 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.bday-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: 7px solid black;
+}

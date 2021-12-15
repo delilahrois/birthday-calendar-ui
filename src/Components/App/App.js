@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Month from '../Month/Month';
 // import fetchBirthdays from './fetchCalls.js';
+import Form from '../Form/Form';
 import { months } from '../../months_data';
 
 class App extends Component {
@@ -22,17 +23,7 @@ class App extends Component {
       .then(response => response.json())
       .then(data =>
         this.setState({ allBirthdays: data.map(each => each) }))
-    }
-  
-
-  // componentDidMount() {
-  //   fetchBirthdays()
-  //     .then(data => this.setState({ months: data.map((month) => {
-  //       return month;
-  //     })}))
-      
-  // }
-
+  }
 
   populateMonths() {
     const months = this.state.months.map((month) => {
@@ -48,7 +39,7 @@ class App extends Component {
       <div className="App">
         <h1>Birthdays</h1>
         <div className='bday-form'>
-
+          <Form />
         </div>
         <div className='bday-container'>
           {this.populateMonths()}
