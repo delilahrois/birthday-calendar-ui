@@ -25,9 +25,9 @@ class Form extends Component {
 
   createNewBday(e) {
     e.preventDefault();
-    let newBday = {id: this.props.months.find(month => month.id === parseInt(this.state.monthInput)), name: this.state.nameInput, month: parseInt(this.state.monthInput), day: parseInt(this.state.dayInput)}
-    console.log(newBday)
-    // this.props.handleChange(newBday)
+    let newBday = {id: Date.now(), name: this.state.nameInput, month: parseInt(this.state.monthInput), day: parseInt(this.state.dayInput)}
+    this.props.handleChange(newBday)
+    this.setState({ nameInput: '', monthInput: '', dayInput: '' })
   }
 
   render() {
@@ -42,7 +42,7 @@ class Form extends Component {
         <label htmlFor="day-input">Day:</label>
         <input type="text" className="input" id="day-input" onChange={(e) => this.setDay(e)}></input>
 
-        <button onClick={(e) => this.createNewBday(e)}>Add this birthday!</button>
+        <button type="submit" onClick={(e) => this.createNewBday(e)}>Add this birthday!</button>
       </form>
     )
   }

@@ -15,26 +15,32 @@ class App extends Component {
     }
   }
 
-  // handleChange(newBday) {
-  //   this.setState({ newBirthday: newBday })
-  // }
+  handleChange = (newBday) => {
+    this.setState({ allBirthdays: [...this.state.allBirthdays, newBday] })
+  }
 
-  componentDidMount () {
+  componentDidMount = () => {
       fetch('http://localhost:3001/api/v1/birthdays')
       .then(response => response.json())
       .then(data =>
-       this.setState({ allBirthdays: data.map(each => each) }))
-      //  .then(this.state.newBirthday && this.setState({allBirthdays: [this.state.allBirthdays, this.state.newBirthday]}))
+       this.setState({ allBirthdays: data }))
   }
 
-  populateMonths() {
-    return this.state.months.map((month) => {
-      const birthdays = this.state.allBirthdays.filter(birthday => birthday.month === month.id);
-      return <Month name={month.name} id={month.id} key={month.id} birthdays={birthdays}/>
+  // populateMonths() {
+  //   return this.state.months.map((month) => {
+  //     const birthdays = this.state.allBirthdays.filter(birthday => birthday.month === month.id);
+  //     return <Month name={month.name} id={month.id} key={month.id} birthdays={birthdays}/>
+  //   })
+  // }
+
+  render = () => {
+    const populateMonths = 
+      this.state.months.map((month) => {
+        const birthdays = this.state.allBirthdays.filter(birthday => birthday.month === month.id);
+        return <Month name={month.name} id={month.id} key={month.id} birthdays={birthdays}/>
     })
-  }
 
-  render() {
+
     return (
       <div className="App">
         <h1>Birthdays</h1>
@@ -42,7 +48,7 @@ class App extends Component {
           <Form months={this.state.months} handleChange={this.handleChange}/>
         </div>
         <div className='bday-container'>
-          {this.populateMonths()}
+          {populateMonths}
         </div>
       </div>
     );
